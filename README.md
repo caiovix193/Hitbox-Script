@@ -7,24 +7,19 @@ local toggleButton = Instance.new("TextButton", screenGui)
 
 toggleButton.Size = UDim2.new(0, 200, 0, 50)
 toggleButton.Position = UDim2.new(0.5, -100, 0.5, -25)
-toggleButton.Text = "Ligado"
+toggleButton.Text = "Desligar"
 toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Verde
 toggleButton.TextColor3 = Color3.new(1, 1, 1)
 
--- Função para alternar o script
-local function toggleScript()
-    _G.Disabled = not _G.Disabled
-    if _G.Disabled then
-        toggleButton.Text = "Desligado"
-        toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Vermelho
-    else
-        toggleButton.Text = "Ligado"
-        toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Verde
-    end
+-- Função para desligar o script
+local function disableScript()
+    _G.Disabled = true
+    toggleButton.Text = "Desligado"
+    toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Vermelho
 end
 
--- Conectar a função de alternância ao botão
-toggleButton.MouseButton1Click:Connect(toggleScript)
+-- Conectar a função de desligar ao botão
+toggleButton.MouseButton1Click:Connect(disableScript)
 
 game:GetService("RunService").RenderStepped:Connect(function()
     if not _G.Disabled then
